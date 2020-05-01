@@ -1,0 +1,52 @@
+@font-face {
+  font-family: proximaNova;
+  src:url("./ProximaNova-Black/ProximaNova-Bold.ttf");
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+body {
+  background-color: #05AAA5;
+  
+
+}
+h2 {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  font-family: proximaNova;
+}
+input {
+  padding: 13px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 3%;
+}
+label {
+  color: white;
+    font-size: 22px;
+    margin-bottom: 2%;
+}
+button {
+  background-color: blue;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+li {
+  display: flex;
+    justify-content: space-between;
+    color: wheat;
+    font-size: 22px;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
