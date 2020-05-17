@@ -16,6 +16,7 @@ class App extends React.Component {
   
   
   addTodo=()=> {
+    
     const items={
       id:uuid.v4(),
       value:this.input.current.value,
@@ -23,6 +24,7 @@ class App extends React.Component {
       date:new Date().toUTCString()
       
     }
+    if (!items.value && !items.description) return <p>Please fill the requored fields</p>;
     if (localStorage.getItem("todo_add")==null) {
       const todos=[]
       todos.push(items);
@@ -63,6 +65,7 @@ class App extends React.Component {
   }
   
   render() {
+    const {todos} = this.state
     return (
 
       <div className="heading">
@@ -84,27 +87,30 @@ class App extends React.Component {
             ref={this.description}
           />
           
-          <button onClick={this.addTodo}>Add Todo</button>
+          <button className="button" onClick={this.addTodo}>Add Todo</button>
           </div>
           </form>
           <ol type="1">
-            {
-              this.state.todos.map((item,index)=>{
+          {todos.length>0 ? (
+            
+              todos.map((item,index)=>{
                return ( <li key={item.id}>
+                <div>{index}</div>
                 <div>{item.value}</div>
                 <div>{item.description}</div>
-                <div>{item.date}</div>
-                <button type="button"  value="delete" data-key={index} onClick={this.delTodo}>X</button>
+                <div>{item.date.slice(0,-3)}</div>
+                <button type="button"  className="delete" value="delete" data-key={index} onClick={this.delTodo}><i class="fas fa-trash-alt"></i></button>
                 
                 </li>
                
                )}
               )
-            }
+            
+          ):(<p className="error">OOPS!!! There is no toDOs in your list</p>)}
+            
           </ol>
         
       </div>
-      // </div>
     );
   }
 }

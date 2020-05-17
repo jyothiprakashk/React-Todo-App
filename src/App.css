@@ -24,7 +24,7 @@ input {
   padding: 13px;
   border-radius: 15px;
   border: none;
-  cursor: pointer;
+  /* cursor: pointer; */
   margin-bottom: 3%;
 }
 label {
@@ -32,7 +32,7 @@ label {
     font-size: 22px;
     margin-bottom: 2%;
 }
-button {
+.button {
   background-color: blue;
   border-radius: 15px;
   border: none;
@@ -49,4 +49,18 @@ li {
     align-items: center;
     width: 80%;
     margin: auto;
+}
+.error {
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-family: monospace;
+  margin-top: 6%;
+}
+.delete {
+  border: none;
+  background: none;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
 }
