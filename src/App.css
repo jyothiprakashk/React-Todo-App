@@ -2,6 +2,10 @@
   font-family: proximaNova;
   src:url("./ProximaNova-Black/ProximaNova-Bold.ttf");
 }
+@font-face {
+  font-family:proximanovaM;
+  src: url("./ProximaNova-Black/ProximaNova-Regular.ttf");
+}
 
 .container {
   display: flex;
@@ -22,7 +26,7 @@ h2 {
 }
 input {
   padding: 13px;
-  border-radius: 15px;
+  border-radius: 3px;
   border: none;
   /* cursor: pointer; */
   margin-bottom: 3%;
@@ -33,22 +37,34 @@ label {
     margin-bottom: 2%;
 }
 .button {
-  background-color: blue;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  color: white;
-  font-size: 20px;
+  /* background-color: blue; */
+    border-radius: 6px;
+    border: 2px solid #00716e;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 10px;
+    /* color: white; */
+    font-size: 20px;
+    width: 110px;
+    display: flex;
+    margin-left: auto;
+    margin-right: 20px;
 }
-li {
-  display: flex;
-    justify-content: space-between;
-    color: wheat;
-    font-size: 22px;
-    align-items: center;
-    width: 80%;
-    margin: auto;
+.button:hover {
+  background-color: blue;
+  color: white;
+}
+hr {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px solid white;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: bold;
 }
 .error {
   text-align: center;
@@ -59,8 +75,55 @@ li {
 }
 .delete {
   border: none;
-  background: none;
-  color: red;
+  background-color: red;
+  color: white;
+  border-radius: 4px;
+  width: 79px;
+  padding: 4px;
   font-size: 20px;
   cursor: pointer;
+}
+.title-desc {
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  margin-right: auto;
+}
+input[type="checkbox"]{
+  width: 30px;
+    height: 23px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.date-del {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+li {
+  display: flex;
+      color: black;
+      font-size: 22px;
+      align-items: center;
+     font-family: proximanovaM;
+      margin: auto;
+      background-color: white;
+      width: 78%;
+      margin-top: 16px;
+      border-radius: 4px;
+      padding: 11px;
+}
+@media only screen and (max-width: 700px) {
+  h2 {
+    font-size: 26px;
+    float: left;
+    margin-left: 9px;
+}
+  
+  .container {
+    width: 96%;
+  }
+  li {
+    width: 90%;
+  }
 }

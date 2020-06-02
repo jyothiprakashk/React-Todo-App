@@ -10,18 +10,22 @@ class App extends React.Component {
     this.description=React.createRef();
     this.state = {
       todos:[],
+      error:false,
+      completed:false
     };
     
   }
   
   
-  addTodo=()=> {
+  addTodo=(e)=> {
+    e.preventDefault()
     
     const items={
       id:uuid.v4(),
       value:this.input.current.value,
       description:this.description.current.value,
-      date:new Date().toUTCString()
+      date:new Date().toUTCString(),
+      completed:false
       
     }
     if (!items.value && !items.description) return <p>Please fill the requored fields</p>;
@@ -63,14 +67,33 @@ class App extends React.Component {
     localStorage.setItem("todo_add",JSON.stringify(listdata))
   
   }
-  
+  // Click=(event)=> {
+  //   console.log(event)
+  //   const complete=this.state.todos
+  //   console.log(complete)
+  //   for (let i=0;i<complete.length;i++) {
+  //     const data=complete[i].completed=
+  //     this.setState({completed:data})
+  //   }
+    
+
+  // }
+  toggleChange=(id)=> {
+    this.setState({ todos:this.state.todos.map(todo=> {
+      if (todo.id===id) {
+        todo.completed=!todo.completed
+      }
+      return todo;
+    })})
+  }
   render() {
     const {todos} = this.state
+    console.log(this.state.todos)
     return (
 
       <div className="heading">
       <h2>React Todo</h2>
-      <form >
+      <form onSubmit={this.addTodo}>
       <div className="container">
         <label >Title</label>
           <input
@@ -87,20 +110,27 @@ class App extends React.Component {
             ref={this.description}
           />
           
-          <button className="button" onClick={this.addTodo}>Add Todo</button>
+          <button className="button">Add Todo</button>
           </div>
           </form>
-          <ol type="1">
+          <hr />
           {todos.length>0 ? (
             
               todos.map((item,index)=>{
                return ( <li key={item.id}>
-                <div>{index}</div>
-                <div>{item.value}</div>
-                <div>{item.description}</div>
-                <div>{item.date.slice(0,-3)}</div>
-                <button type="button"  className="delete" value="delete" data-key={index} onClick={this.delTodo}><i class="fas fa-trash-alt"></i></button>
-                
+            <input
+              type="checkbox"
+              id="checkbox"
+              onChange={this.toggleChange.bind(this,item.id)}
+            />
+                <div className="title-desc" style={{textDecoration:item.completed ? 'line-through' : ''}}>
+                  <div className="title">{item.value}</div>
+                  <div>{item.description}</div>
+                </div>
+                <div className="date-del">
+                <div className="title-desc" style={{textDecoration:item.completed ? 'line-through' : ''}}>{item.date.slice(4,-15)}</div>
+                <button type="button"  className="delete" value="delete" data-key={index} onClick={this.delTodo}>Delete</button>
+                </div>
                 </li>
                
                )}
@@ -108,7 +138,6 @@ class App extends React.Component {
             
           ):(<p className="error">OOPS!!! There is no toDOs in your list</p>)}
             
-          </ol>
         
       </div>
     );
